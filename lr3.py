@@ -66,7 +66,7 @@ USED_LETTERS = ''
 window = tk.Tk()
 window.title('My app')
 window.geometry('300x300')
-bg_img = tk.PhotoImage(file='gradient.png')
+bg_img = tk.PhotoImage(file='bg_pic.png')
 
 label_bg = tk.Label(window, image=bg_img)
 label_bg.place(x=0, y=0, relwidth=1, relheight=1)

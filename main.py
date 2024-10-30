@@ -1,7 +1,21 @@
 import tkinter as tk
-from tkinter import messagebox
-from sqrEq import sqrEquation
 
+def sqr_eq(A, B, C):
+    if A == 0:
+        text = f'Division by zero!'
+    else:
+        D = B ** 2 - 4 * A * C
+        if D > 0:
+            x1 = round((D ** 0.5 - B) / (A * 2), 2)
+            x2 = round((B * -1 - D ** 0.5) / (A * 2), 2)
+            text = f'{x1}, {x2}'
+        elif D == 0:
+            x1 = round((B * -1) / (A * 2), 2)
+            text = f'{x1}'
+        else:
+            text = f'No roots!'
+
+    return text
 
 def close():
     window.destroy()
@@ -12,9 +26,9 @@ def calc():
     B = float(arg_B.get())
     C = float(arg_C.get())
     if A == 0.0:
-        tk.messagebox.showwarning('Error', 'Division by zero!')
+        tk.Message('Error', 'Division by zero!')
     else:
-        lbl_result.configure(text=sqrEquation(A, B, C))
+        lbl_result.configure(text=sqr_eq(A, B, C))
 
 
 window = tk.Tk()
