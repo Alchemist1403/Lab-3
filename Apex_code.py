@@ -65,7 +65,7 @@ def create_key(a):
 def click():
     '''Функция выводит сгенерированный ключ доступа после нажатия кнопки'''
     number = number_entry.get()
-    if len(number) != 3 or number == "000":
+    if len(number) != 3 or number[0] == "0":
         tk.messagebox.showwarning('Ошибка','Это не трёхзначное число!')
         return 0
     else:
@@ -91,12 +91,10 @@ def click():
 
 
 
-
 # Запуск программы и размеры
 root = tk.Tk()
 root.title('Генератора ключа')
 root.geometry('1300x800')
-
 
 # Фон
 bg_image = tk.PhotoImage(file='Crypto.png')
