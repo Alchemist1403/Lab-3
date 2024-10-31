@@ -81,9 +81,10 @@ def click():
                 bg = '#00EE76',
                 fg = 'white',
                 highlightbackground="#282828",
-                highlightthickness=3
+                highlightthickness=3,
+                width=20
             )
-            main_key.place(x=150,y=540)
+            main_key.place(x=110,y=540)
             created_keys.append(main_key)
             if len(created_keys) > 1:
                 previous_key = created_keys.pop(0)
@@ -96,7 +97,6 @@ def create_progressbar():
     '''Функция создаёт анимацию загрузки'''
     prog_bar=Progressbar(root,orient='horizontal',length=700,mode='determinate')
     prog_bar.place(x=300,y=700)
-
     for row in range(100):
         prog_bar['value']=row
         root.update_idletasks()
