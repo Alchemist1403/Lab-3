@@ -2,8 +2,8 @@ import random
 import time
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.ttk import Progressbar
 from pygame import mixer
-from tkinter.ttk import *
 
 # Списки для работы функции, генерирующей ключ
 DOUBLE_LATIN_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -105,7 +105,7 @@ def create_progressbar():
 
 # Запуск программы и размеры
 root = tk.Tk()
-root.title('Генератора ключа')
+root.title('Генератор ключа')
 root.geometry('1300x800')
 
 # Фон
