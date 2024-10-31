@@ -1,7 +1,9 @@
 import random
+import time
 import tkinter as tk
 from tkinter import messagebox
-
+from pygame import mixer
+from tkinter.ttk import *
 
 # Списки для работы функции, генерирующей ключ
 DOUBLE_LATIN_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -48,7 +50,7 @@ def create_key(a):
                     key_creation[symbol] = DOUBLE_LATIN_ALPHABET[DOUBLE_LATIN_ALPHABET.index(key_creation[symbol])-int(a[1])]
                 if key_creation[symbol] in DOUBLE_NUMBERS:
                     key_creation[symbol] = DOUBLE_NUMBERS[DOUBLE_NUMBERS.index(key_creation[symbol])-int(a[1])]
-        
+
         # Четвёртый блок ключа
         if len(key_creation) == 2:
             for symbol in range(len(key_creation)):
@@ -70,17 +72,18 @@ def click():
         return 0
     else:
         if number.isdigit():
-            key = create_key(number)
+            create_progressbar()
+            main_key = create_key(number)
             main_key = tk.Label(
                 root,
-                text= key,
+                text= main_key,
                 font=('Arial_Black', 70),
                 bg = '#00EE76',
                 fg = 'white',
                 highlightbackground="#282828",
                 highlightthickness=3
             )
-            main_key.place(x=150,y=600)
+            main_key.place(x=150,y=540)
             created_keys.append(main_key)
             if len(created_keys) > 1:
                 previous_key = created_keys.pop(0)
@@ -89,7 +92,16 @@ def click():
             tk.messagebox.showwarning('Ошибка','Это не трёхзначное число!')
         return 0
 
+def create_progressbar():
+    '''Функция создаёт анимацию загрузки'''
+    prog_bar=Progressbar(root,orient='horizontal',length=700,mode='determinate')
+    prog_bar.place(x=300,y=700)
 
+    for row in range(100):
+        prog_bar['value']=row
+        root.update_idletasks()
+        time.sleep(0.01)
+    prog_bar.destroy()
 
 # Запуск программы и размеры
 root = tk.Tk()
@@ -102,15 +114,17 @@ label_bg = tk.Label(root, image=bg_image)
 label_bg.place(x=0, y=0, relwidth=1, relheight=1)
 
 # Верхняя надпись "Введите трёхзначное число"
+
 input_number_label = tk.Label(
     root,
-    text='Введите трёхзначное число ',
+    text='Введите трёхзначное число: ',
     font=('Arial_Black', 30),
     bg = '#00EE76',
     fg = 'black',
     highlightbackground="#282828",
     highlightthickness=3
 )
+root.after(5,input_number_label)
 input_number_label.place(x=30,y=140)
 
 # Окно для ввода числа
@@ -120,7 +134,7 @@ number_entry.place(x=60, y=270)
 # Надпись "Сгенерированный ключ"
 key_creation_label = tk.Label(
     root,
-    text='Сгенерированный ключ ',
+    text='Сгенерированный ключ: ',
     font=('Arial_Black', 30),
     bg = '#00EE76',
     fg = 'black',
@@ -139,6 +153,10 @@ btn_key = tk.Button(
     command=click
 )
 btn_key.place(x=320,y=263)
-key_lable = tk.Label()
+
+# Воспроизведение музыки
+mixer.init()
+mixer.music.load("Apex.mp3")
+mixer.music.play(999)
 
 root.mainloop()
