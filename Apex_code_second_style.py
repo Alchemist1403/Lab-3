@@ -5,7 +5,7 @@ from tkinter import messagebox
 from tkinter.ttk import Progressbar
 from pygame import mixer
 
-# Списки для работы функции, генерирующей ключ
+
 DOUBLE_LATIN_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
 DOUBLE_NUMBERS = "01234567890123456789"
 SYMBOLS = "012345678ABCDEFGHIJKLMNOPQRSTUVWXYZ"
